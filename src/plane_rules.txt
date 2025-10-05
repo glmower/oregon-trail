@@ -1,0 +1,37 @@
+===== PLANE RULES =====
+
+Congratulations on booking your flight! Let's talk about it.
+
+Price:
+To determine the price of your flight, you'll roll two dice.
+
+For a layover:
+If you roll 2-3, your price will be $200 - $225.
+If you roll 4-6, your price will be $225 - $250.
+If you roll 7-9, your price will be $250 - $275.
+If you roll 10-12, your price will be $275 - $300.
+
+For a direct flight:
+If you roll 2-3, your price will be $300 - $325.
+If you roll 4-6, your price will be $325 - $350.
+If you roll 7-9, your price will be $350 - $375.
+If you roll 10-12, your price will be $375 - $400.
+
+TSA:
+You have a 50/50 chance of making it through TSA safely.
+If you make it through, you will gain 1 morale point.
+If you don't make it through, you will lose half of your supplies and 1 morale point.
+
+Flying:
+You will roll to determine how far you fly.
+Your roll multiplier is 75 - so whatever you roll, you'll fly 75x that many miles.
+Every time you fly, a number will be generated for you from 1-100.
+1-25: Turbulence - lose one roll and 1 morale point.
+25-75 - No issues. Gain 1 morale point.
+75-100: Your flight was grounded. You must rebook your flight. Rebooked flights come at a fixed cost of $150. Lose one roll and 3 morale points.
+
+If you're on a layover, you have a 50/50 chance of making your connection.
+If you miss your connection, you must rebook your flight. Rebooked flights come at a fixed cost of $150. Lose one roll and 3 morale points.
+If you make your connection, you will gain 3 morale points.
+
+Best of luck!

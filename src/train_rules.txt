@@ -1,0 +1,20 @@
+===== TRAIN RULES =====
+
+Congratulations on buying your train tickets! Let's talk about it.
+
+Price:
+To determine the price of your ticket, you'll roll two dice.
+If you roll 2-3, your price will be $50 - $62.
+If you roll 4-6, your price will be $63 - $75.
+If you roll 7-9, your price will be $75 - $87.
+If you roll 10-12, your price will be $87 - $100.
+
+Traveling:
+You will roll to determine how far you travel.
+Your roll multiplier is 25 - so whatever you roll, you'll travel 25x that many miles.
+Every time you drive, a number will be generated for you from 1-100.
+1-25: The train is stopped - lose one roll and 2 morale points.
+25-50: Transfer lines - lose two rolls.
+50-100: No issues. Gain 1 morale point.
+
+Best of luck!

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oregon Trail Archive</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="game-container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-content">
+                <h1 class="game-title">OREGON TRAIL ARCHIVE</h1>
+                <div class="welcome-text">
+                    <p>Welcome to the Oregon Trail!</p>
+                    <p>You must travel 2170 miles from Independence, Missouri to Willamette Valley</p>
+                    <p>Choose an option below to get started.</p>
+                </div>
+                <div class="welcome-buttons">
+                    <button id="start-game-btn" class="btn btn-primary">Start Game</button>
+                    <button id="view-rules-btn" class="btn btn-secondary">View Rules</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rules Screen -->
+        <div id="rules-screen" class="screen">
+            <div class="rules-content">
+                <h2>GAME RULES</h2>
+                <div id="rules-text" class="rules-text"></div>
+                <button id="back-from-rules-btn" class="btn btn-secondary">Back</button>
+            </div>
+        </div>
+
+        <!-- Player Setup Screen -->
+        <div id="player-setup-screen" class="screen">
+            <div class="setup-content">
+                <h2>PLAYER SETUP</h2>
+                <div class="setup-form">
+                    <label for="player-name">Enter your name:</label>
+                    <input type="text" id="player-name" placeholder="Your name" maxlength="20">
+                    <button id="continue-setup-btn" class="btn btn-primary">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supply Purchase Screen -->
+        <div id="supply-screen" class="screen">
+            <div class="supply-content">
+                <h2>PACK YOUR SUPPLIES</h2>
+                <div class="supply-info">
+                    <p>You have $1000 to spend on supplies.</p>
+                    <p>You can buy supplies during your trip, but this will cost you extra rolls.</p>
+                    <p>Try and buy what you'll need now, but don't overspend!</p>
+                </div>
+                <div class="supply-form">
+                    <div class="supply-item">
+                        <label>Meals ($10 each) - You eat 1 meal per 5 rolls:</label>
+                        <input type="number" id="meals" min="0" value="0">
+                    </div>
+                    <div class="supply-item">
+                        <label>Snacks ($20 each) - Optional, +5 morale each:</label>
+                        <input type="number" id="snacks" min="0" value="0">
+                    </div>
+                    <div class="supply-item">
+                        <label>Clothes ($10 per bundle) - 1 bundle per 10 rolls:</label>
+                        <input type="number" id="clothes" min="0" value="0">
+                    </div>
+                    <div class="supply-item">
+                        <label>Toiletries ($5 per set) - 1 set per 5 rolls:</label>
+                        <input type="number" id="toiletries" min="0" value="0">
+                    </div>
+                    <div class="total-cost">
+                        <p>Total Cost: $<span id="total-cost">0</span></p>
+                        <p>Remaining Money: $<span id="remaining-money">1000</span></p>
+                    </div>
+                    <button id="continue-supplies-btn" class="btn btn-primary">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vehicle Selection Screen -->
+        <div id="vehicle-screen" class="screen">
+            <div class="vehicle-content">
+                <h2>CHOOSE YOUR VEHICLE</h2>
+                <div class="vehicle-options">
+                    <div class="vehicle-card" data-vehicle="car">
+                        <h3>Car</h3>
+                        <p>Price: $100 - $200</p>
+                        <p>Multiplier: 50 miles per roll</p>
+                        <p>Special: Gas management required</p>
+                    </div>
+                    <div class="vehicle-card" data-vehicle="plane">
+                        <h3>Plane</h3>
+                        <p>Price: $200 - $400</p>
+                        <p>Multiplier: 75 miles per roll</p>
+                        <p>Special: TSA check, layover options</p>
+                    </div>
+                    <div class="vehicle-card" data-vehicle="train">
+                        <h3>Train</h3>
+                        <p>Price: $50 - $100</p>
+                        <p>Multiplier: 25 miles per roll</p>
+                        <p>Special: Most reliable, slowest</p>
+                    </div>
+                </div>
+                <div id="plane-options" class="plane-options hidden">
+                    <h3>Choose Flight Type:</h3>
+                    <button class="btn btn-secondary" data-flight="direct">Direct Flight ($300-$400)</button>
+                    <button class="btn btn-secondary" data-flight="layover">Layover ($200-$300)</button>
+                </div>
+                <div id="vehicle-price" class="vehicle-price hidden">
+                    <p>Rolling for vehicle cost...</p>
+                    <div class="dice-roll">
+                        <div class="dice" id="dice1">?</div>
+                        <div class="dice" id="dice2">?</div>
+                    </div>
+                    <p>Total Cost: $<span id="vehicle-cost">0</span></p>
+                    <button id="confirm-vehicle-btn" class="btn btn-primary">Confirm Purchase</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <h2>OREGON TRAIL</h2>
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-label">Round:</span>
+                        <span id="round-counter">1</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Money:</span>
+                        <span id="player-money">$0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Morale:</span>
+                        <span id="player-morale">10</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <div class="player-info">
+                    <h3>Player: <span id="player-name-display"></span></h3>
+                    <div class="supplies-display">
+                        <div class="supply-item-display">
+                            <span>Meals:</span>
+                            <span id="meals-display">0</span>
+                        </div>
+                        <div class="supply-item-display">
+                            <span>Snacks:</span>
+                            <span id="snacks-display">0</span>
+                        </div>
+                        <div class="supply-item-display">
+                            <span>Clothes:</span>
+                            <span id="clothes-display">0</span>
+                        </div>
+                        <div class="supply-item-display">
+                            <span>Toiletries:</span>
+                            <span id="toiletries-display">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vehicle-info">
+                    <h3>Vehicle: <span id="vehicle-type-display"></span></h3>
+                    <div class="distance-info">
+                        <div class="distance-item">
+                            <span>Distance Traveled:</span>
+                            <span id="distance-traveled">0</span> miles
+                        </div>
+                        <div class="distance-item">
+                            <span>Distance Remaining:</span>
+                            <span id="distance-remaining">2170</span> miles
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div id="vehicle-specific-info" class="vehicle-specific-info"></div>
+                </div>
+
+                <div class="game-actions">
+                    <button id="travel-btn" class="btn btn-primary">Travel</button>
+                    <button id="check-supplies-btn" class="btn btn-secondary">Check Supplies</button>
+                    <button id="buy-supplies-btn" class="btn btn-secondary">Buy Supplies</button>
+                    <button id="eat-snack-btn" class="btn btn-secondary">Eat Snack</button>
+                    <button id="vehicle-rules-btn" class="btn btn-secondary">Vehicle Rules</button>
+                    <button id="quit-game-btn" class="btn btn-danger">Quit Game</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Travel Screen -->
+        <div id="travel-screen" class="screen">
+            <div class="travel-content">
+                <h2>TRAVEL</h2>
+                <div class="dice-roll-section">
+                    <p>Roll to travel!</p>
+                    <div class="dice-roll">
+                        <div class="dice" id="travel-dice1">?</div>
+                        <div class="dice" id="travel-dice2">?</div>
+                    </div>
+                    <p>You rolled: <span id="dice-total">0</span></p>
+                    <p>Distance traveled: <span id="travel-distance">0</span> miles</p>
+                </div>
+                <div id="travel-event" class="travel-event"></div>
+                <button id="continue-travel-btn" class="btn btn-primary">Continue</button>
+            </div>
+        </div>
+
+        <!-- Store Screen -->
+        <div id="store-screen" class="screen">
+            <div class="store-content">
+                <h2>GENERAL STORE</h2>
+                <div class="store-info">
+                    <p>You have: $<span id="store-money">0</span></p>
+                </div>
+                <div class="store-items">
+                    <div class="store-item">
+                        <h4>Meals - $10 each</h4>
+                        <input type="number" id="buy-meals" min="0" value="0">
+                    </div>
+                    <div class="store-item">
+                        <h4>Snacks - $20 each</h4>
+                        <input type="number" id="buy-snacks" min="0" value="0">
+                    </div>
+                    <div class="store-item">
+                        <h4>Clothes - $10 per bundle</h4>
+                        <input type="number" id="buy-clothes" min="0" value="0">
+                    </div>
+                    <div class="store-item">
+                        <h4>Toiletries - $5 per set</h4>
+                        <input type="number" id="buy-toiletries" min="0" value="0">
+                    </div>
+                </div>
+                <div class="store-total">
+                    <p>Total Cost: $<span id="store-total">0</span></p>
+                </div>
+                <div class="store-buttons">
+                    <button id="purchase-items-btn" class="btn btn-primary">Purchase</button>
+                    <button id="back-from-store-btn" class="btn btn-secondary">Back</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gas Station Screen (Car only) -->
+        <div id="gas-screen" class="screen">
+            <div class="gas-content">
+                <h2>GAS STATION</h2>
+                <div class="gas-info">
+                    <p>Welcome to the gas station!</p>
+                    <p>Roll for your gas price.</p>
+                </div>
+                <div class="dice-roll-section">
+                    <div class="dice-roll">
+                        <div class="dice" id="gas-dice">?</div>
+                    </div>
+                    <p>Your gas rate: $<span id="gas-rate">0</span></p>
+                </div>
+                <div class="gas-form">
+                    <p>How many gallons would you like to buy?</p>
+                    <p>Your car can drive 30 miles per gallon.</p>
+                    <input type="number" id="gas-gallons" min="0" value="0">
+                    <div class="gas-total">
+                        <p>Total Cost: $<span id="gas-total">0</span></p>
+                        <p id="service-fee" class="hidden">Service Fee: $25</p>
+                    </div>
+                    <div class="gas-buttons">
+                        <button id="purchase-gas-btn" class="btn btn-primary">Purchase Gas</button>
+                        <button id="back-from-gas-btn" class="btn btn-secondary">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen">
+            <div class="game-over-content">
+                <h2>GAME OVER</h2>
+                <div id="game-over-message"></div>
+                <div id="final-score" class="final-score hidden">
+                    <h3>Final Score</h3>
+                    <div class="score-breakdown">
+                        <p>Number of Rolls: <span id="final-rolls">0</span></p>
+                        <p>Money Left: $<span id="final-money">0</span></p>
+                        <p>Meals Left: <span id="final-meals">0</span></p>
+                        <p>Snacks Left: <span id="final-snacks">0</span></p>
+                        <p>Clothes Left: <span id="final-clothes">0</span></p>
+                        <p>Toiletries Left: <span id="final-toiletries">0</span></p>
+                        <p>Morale: <span id="final-morale">0</span></p>
+                    </div>
+                    <div class="score-calculation">
+                        <p>YOUR SCORE: <span id="calculated-score">0</span></p>
+                    </div>
+                </div>
+                <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+            </div>
+        </div>
+
+        <!-- Modal for rules -->
+        <div id="rules-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Vehicle Rules</h2>
+                <div id="modal-rules-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>

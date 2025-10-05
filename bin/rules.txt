@@ -1,0 +1,34 @@
+===== RULES =====
+
+Welcome to the Oregon Trail!
+
+You will start with $1000.
+You cannot make more money throughout the game, so be cautious!
+If you reach bankruptcy, the game will be over.
+
+Your score is calculated using four factors:
+1. The money you have left.
+2. The number of turns it took you.
+3. The supplies you have left.
+4. Your morale when you arrive.
+
+The number of turns it took you is your base score.
+The money and supplies you have left are weighted and added to your base score.
+Your morale is your multiplier.
+
+Each vehicle type introduces inherent risk.
+For example, if you drive, you may hit traffic. This causes you to use your supplies faster.
+If you take a layover, you may miss your connection. This uses supplies and costs additional mony.
+Taking a direct flight is more expensive upfront but introduces less risk.
+However, turbulence or other "regular" risks may cost you supplies.
+Trains have the fewest risks associated with them. However, they travel the slowest.
+
+Higher risk introduces higher reward in terms of your morale.
+Your morale starts at 10.
+You will lose one morale point every 10 rolls.
+However, if things don't go your way, you can lose morale more rapidly.
+If you arrive in Willamette Valley with a morale score < 1, your multiplier will be 0.5
+
+Are you ready to take the Oregon Trail?
+
+Press ENTER to continue.

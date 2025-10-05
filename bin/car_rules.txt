@@ -1,0 +1,24 @@
+===== CAR RULES =====
+
+Congratulations on renting your car! Let's talk about it.
+
+Price:
+These cars come at a low price. You'll be expected to return your car when you arrive at Willamette Valley.
+To determine the price of your car, you'll roll two dice.
+If you roll 2-3, your price will be $100 - $125.
+If you roll 4-6, your price will be $125 - $150.
+If you roll 7-9, your price will be $150 - $175.
+If you roll 10-12, your price will be $175 - $200.
+
+Driving:
+You will roll to determine how far you drive.
+Your roll multiplier is 50 - so whatever you roll, you'll drive 50x that many miles.
+Every time you drive, a number will be generated for you from 1-100.
+1-25: Traffic - lose one roll. Lose 50 additional gas miles and 1 morale point.
+25-50: Get lost - lose two rolls. Lose 75 additional gas miles and 2 morale points.
+50-60: Accident - lose one roll. Rent a new car and lose 3 morale points. Re-rented cars come at a fixed cost of $150.
+60-100: No issues. Gain 1 morale point.
+
+If you run out of gas on the road, you will be required to pay an additional $25 fee for a gas delivery.
+
+Best of luck!
